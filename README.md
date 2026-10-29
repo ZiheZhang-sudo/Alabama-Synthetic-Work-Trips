@@ -173,7 +173,7 @@ Trip density and the trip-duration shares (e.g., percent of trips under 10 min) 
 | `depart_min` | float | Departure time in minutes after midnight (continuous) |
 | `depart_time` | string | Same time as `H:M:S` (not zero-padded, e.g. `6:52:55`) |
 
-For `triptype 1`, `start_geocode` is the LODES home block and `end_geocode` is the work block; for `triptype 2` they are swapped. The file name is the Census urbanized-area code (`geoid` in `urban data for modeling corrected.csv`).
+For `triptype 1`, `start_geocode` is the LODES home block and `end_geocode` is the work block; for `triptype 2` they are swapped. File names are `<geoid>_<area name>.csv`, where `geoid` is the Census urbanized-area code (the `geoid` column in `urban data for modeling corrected.csv`); e.g. `57925_Mobile_AL.csv`. The lookup table is in `data/README.md` and `city_index.csv`.
 
 ---
 
@@ -181,7 +181,7 @@ For `triptype 1`, `start_geocode` is the LODES home block and `end_geocode` is t
 
 The 12 study areas in or partly in Alabama are in `data/`. `city_index.csv` holds the same table in machine-readable form.
 
-| geoid | Urbanized area | Size class | Pop. (2010) | Area km² | Trips (rows) | Travelers | Median HW dep. | Median WH dep. | Mean straight-line km | Home blocks | Work blocks |
+| geoid | Urbanized area (file: `<geoid>_<name>.csv`) | Size class | Pop. (2010) | Area km² | Trips (rows) | Travelers | Median HW dep. | Median WH dep. | Mean straight-line km | Home blocks | Work blocks |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 57925 | Mobile AL | Midsized | 327,445 | 576.7 | 203,360 | 101,680 | 7:45 | 16:59 | 10.1 | 6,206 | 2,967 |
 | 40780 | Huntsville AL | Midsized | 303,991 | 543.2 | 214,832 | 107,416 | 7:45 | 16:59 | 10.7 | 5,823 | 2,470 |
@@ -211,7 +211,8 @@ Alabama-Synthetic-Work-Trips/
 ├── README.md                this document
 ├── city_index.csv           geoid, name, population, area, density, cluster, row count
 ├── data/
-│   └── 2629.csv … 89110.csv 12 trip files (one per urbanized area)
+│   ├── README.md            code → city lookup table
+│   └── 57925_Mobile_AL.csv … 12 trip files, named <geoid>_<city>.csv
 └── figures/
     ├── Fig2_data_preparation_overview.png
     ├── Fig3_trip_departure_distributions.png
